@@ -18,6 +18,7 @@ var Grid = function Grid(xAxis, yAxis) {
 
 Grid.prototype.run = function() {
   this.matrix();
+  setInterval(this.randColor, Math.floor(Math.random() * 2 + 1)* 1000);
   return this;
 }
 
@@ -40,6 +41,18 @@ Grid.prototype.run = function() {
         matrix.appendChild(tr);
     }
     document.body.appendChild(matrix);
+}
+
+/*
+ * randColor
+ */
+
+Grid.prototype.randColor = function() {
+  var cell = document.querySelectorAll('td');
+  cell.forEach(function(cell) {
+    var randColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    cell.style.backgroundColor = randColor;
+  });
 }
 
 var grid1 = new Grid(5, 5);
