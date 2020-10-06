@@ -7,6 +7,7 @@ var RenderWorldMap = function RenderWorldMap() {
 RenderWorldMap.prototype.run = function() {
   this.createMap();
   this.select();
+  this.legend();
 }
 
 RenderWorldMap.prototype.createMap = function() {
@@ -764,6 +765,25 @@ RenderWorldMap.prototype.select = function() {
       event.target.style.fill = 'black';
     })
   });
+
+RenderWorldMap.prototype.legend = function() {
+  var legend = document.createElement('ul');
+  var country = document.body.querySelectorAll('path');
+  var hover = document.createElement('li');
+  var selected = document.createElement('li');
+
+  country.forEach(function(path) {
+    path.addEventListener('mouseenter', event => {
+      hover.textContent = 'Pays survoler : ' + event.target.id.toUpperCase();
+      legend.appendChild(hover);
+    });
+    path.addEventListener('click', event => {
+      selected.textContent = 'Pays sélectionner : ' + event.target.id.toUpperCase();
+      legend.prepend(selected);
+    });
+  })
+  document.body.appendChild(legend);
+}
 
 }
 
