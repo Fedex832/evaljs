@@ -8,6 +8,7 @@ var MyAverage = function MyAverage(markArray) {
 
 MyAverage.prototype.run = function() {
   this.form();
+  this.marks();
 }
 
 MyAverage.prototype.form = function() {
@@ -25,6 +26,16 @@ MyAverage.prototype.form = function() {
   cal.setAttribute('type', 'button');
   form.appendChild(cal);
   document.body.appendChild(form);
+}
+
+MyAverage.prototype.marks = function() {
+  var add = document.querySelector('[type=button]');
+  add.addEventListener('click', event => {
+    var input = document.querySelector('[type=text]');
+    var newMark = input.value;
+    markArray.push(newMark);
+    input.value = '';
+  })
 }
 
 var average1 = new MyAverage(markArray);
